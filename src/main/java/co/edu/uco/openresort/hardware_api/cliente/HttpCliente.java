@@ -5,5 +5,5 @@ import org.springframework.http.ResponseEntity;
 import java.io.IOException;
 
 public interface HttpCliente {
-    void post(String endPoint, String json) throws IOException, InterruptedException, Exception;
+    ResponseEntity<?> post(String endPoint, String json) throws IOException, InterruptedException, Exception;
 }

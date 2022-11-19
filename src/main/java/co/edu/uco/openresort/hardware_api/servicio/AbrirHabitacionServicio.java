@@ -1,5 +1,7 @@
 package co.edu.uco.openresort.hardware_api.servicio;
 
+import org.springframework.http.ResponseEntity;
+
 public interface AbrirHabitacionServicio {
-    void abrir(long idTag, int idHabitacion) throws Exception;
+    ResponseEntity<?> abrir(long idTag, int idHabitacion) throws Exception;
 }
