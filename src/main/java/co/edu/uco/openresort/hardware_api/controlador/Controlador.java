@@ -20,8 +20,8 @@ public class Controlador {
     private AbrirHabitacionServicio abrirHabitacionServicio;
 
     @PostMapping("/acceso")
-    public void darAcceso(@RequestBody AccesoDTO accesoDTO) throws Exception {
-        accesoHabitacionServicio.darAcceso(accesoDTO.getIdTag(),accesoDTO.getIdHabitacion());
+    public ResponseEntity<?> darAcceso(@RequestBody AccesoDTO accesoDTO) throws Exception {
+        return accesoHabitacionServicio.darAcceso(accesoDTO.getIdTag(),accesoDTO.getIdHabitacion());
     }
 
     @PostMapping("/abrir")
