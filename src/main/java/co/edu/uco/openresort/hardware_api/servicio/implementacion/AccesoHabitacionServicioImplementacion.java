@@ -26,11 +26,14 @@ public class AccesoHabitacionServicioImplementacion implements AccesoHabitacionS
         operacionTagEntidad.setFecha(LocalDateTime.now());
         operacionTagEntidad.setOperacion("acceso a la habitacion con id: "+ idHabitacion);
 
-        operacionTagRepositorio.insert(operacionTagEntidad);
+        ResponseEntity respuesta = httpCliente.post("http://localhost:8080/habtacion/acceso","{\"idTag\":" + idTag + ",\"idHabitacion\":" + idHabitacion + "}");
 
-        return httpCliente.post("http://localhost:8080/habtacion/acceso","{\"idTag\":" + idTag + ",\"idHabitacion\":" + idHabitacion + "}");
+        //La comparacion debe ser por status code y no por body
+        if (respuesta.getBody().toString().equals("acceso concedido")){
+            operacionTagRepositorio.insert(operacionTagEntidad);
+        }
 
-
+        return respuesta;
     }
 
     @Override
