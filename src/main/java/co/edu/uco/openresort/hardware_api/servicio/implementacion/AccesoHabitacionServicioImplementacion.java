@@ -1,5 +1,6 @@
 package co.edu.uco.openresort.hardware_api.servicio.implementacion;
 
+import co.edu.uco.openresort.hardware_api.Credenciales;
 import co.edu.uco.openresort.hardware_api.cliente.HttpCliente;
 import co.edu.uco.openresort.hardware_api.entidad.OperacionTagEntidad;
 import co.edu.uco.openresort.hardware_api.repositorio.OperacionTagRepositorio;
@@ -26,7 +27,7 @@ public class AccesoHabitacionServicioImplementacion implements AccesoHabitacionS
         operacionTagEntidad.setFecha(LocalDateTime.now());
         operacionTagEntidad.setOperacion("acceso a la habitacion con id: "+ idHabitacion);
 
-        ResponseEntity respuesta = httpCliente.post("http://localhost:8080/habtacion/acceso","{\"idTag\":" + idTag + ",\"idHabitacion\":" + idHabitacion + "}");
+        ResponseEntity respuesta = httpCliente.post(Credenciales.ENDPOINT_OPENRESORT_ACCESO,"{\"idTag\":" + idTag + ",\"idHabitacion\":" + idHabitacion + "}");
 
         //La comparacion debe ser por status code y no por body
         if (respuesta.getBody().toString().equals("acceso concedido")){
